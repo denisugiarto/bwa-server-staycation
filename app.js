@@ -20,7 +20,7 @@ var usersRouter = require("./routes/users");
 //router admin
 const adminRouter = require("./routes/admin");
 const apiRouter = require("./routes/api");
-
+var cors = require('cors')
 var app = express();
 
 // view engine setup
@@ -44,11 +44,11 @@ app.use(
   express.static(path.join(__dirname, "node_modules/startbootstrap-sb-admin-2"))
 );
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/",cors(), indexRouter);
+app.use("/users",cors(), usersRouter);
 //admin
-app.use("/admin", adminRouter);
-app.use("/api/v1/member", apiRouter);
+app.use("/admin",cors(), adminRouter);
+app.use("/api/v1/member",cors(), apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
