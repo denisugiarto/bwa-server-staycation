@@ -103,7 +103,7 @@ module.exports = {
 
     bookingPage: async (req, res) => {
         const {
-            idItem,
+            itemId,
             duration,
             // price, 
             bookingStartDate,
@@ -118,7 +118,7 @@ module.exports = {
         if(!req.file) {
             return res.status(404).json({ message: "Image not found" });
         }
-        if (idItem === undefined ||
+        if (itemId === undefined ||
         duration === undefined ||
         // price === undefined ||
         bookingStartDate === undefined ||
@@ -132,7 +132,7 @@ module.exports = {
             res.status(404).json({ message: "Lengkapi semua field"});
         }
 
-        const item = await Item.findOne({ _id: idItem });
+        const item = await Item.findOne({ _id: itemId });
         if (!item) {
             return res.status(404).json({ message: "item not found" });
         }
