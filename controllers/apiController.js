@@ -132,7 +132,7 @@ module.exports = {
             res.status(404).json({ message: "Lengkapi semua field"});
         }
 
-        const item = await Item.findOne({ _id: idItem });
+        const item = await Item.findOne({ _id: itemId });
         if (!item) {
             return res.status(404).json({ message: "item not found" });
         }
