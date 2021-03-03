@@ -181,7 +181,7 @@ module.exports = {
         name,
         nameBank,
         nomorRekening,
-        imageUrl: `images/${req.file.filename}`,
+        imageUrl: `images/bank/${req.file.filename}`,
       });
       req.flash("alertMessage", `Success Add ${nameBank} with name ${name} `);
       req.flash("alertStatus", "success");
@@ -208,11 +208,11 @@ module.exports = {
         req.flash("alertStatus", "success");
         res.redirect("/admin/bank");
       } else {
-        await fs.unlink(path.join(`public/${bank.imageUrl}`));
+        await fs.unlink(path.join(`public/bank/${bank.imageUrl}`));
         bankname = name;
         bank.nameBank = nameBank;
         bank.nomorRekening = nomorRekening;
-        bank.imageUrl = `images/${req.file.filename}`;
+        bank.imageUrl = `images/bank/${req.file.filename}`;
         await bank.save();
         req.flash("alertMessage", `Success Update Bank`);
         req.flash("alertStatus", "success");
@@ -231,7 +231,7 @@ module.exports = {
       const bank = await Bank.findOne({
         _id: id,
       });
-      await fs.unlink(path.join(`public/${bank.imageUrl}`));
+      await fs.unlink(path.join(`public/bank/${bank.imageUrl}`));
       await bank.remove();
       req.flash("alertMessage", "Success Delete Bank");
       req.flash("alertStatus", "success");
@@ -291,7 +291,7 @@ module.exports = {
         await category.save();
         for (let i = 0; i < req.files.length; i++) {
           const imageSave = await Image.create({
-            imageUrl: `images/${req.files[i].filename}`,
+            imageUrl: `images/product/${req.files[i].filename}`,
           });
           item.imageId.push({
             _id: imageSave._id,
@@ -375,8 +375,8 @@ module.exports = {
       if (req.files.length > 0) {
         for (let i = 0; i < item.imageId.length; i++) {
           const imageUpdate = await Image.findOne({ _id: item.imageId[i]._id });
-          await fs.unlink(path.join(`public/${imageUpdate.imageUrl}`));
-          imageUpdate.imageUrl = `images/${req.files[i].filename}`;
+          await fs.unlink(path.join(`public/product/${imageUpdate.imageUrl}`));
+          imageUpdate.imageUrl = `images/product/${req.files[i].filename}`;
           await imageUpdate.save();
           item.title = title;
           item.price = price;
@@ -413,7 +413,7 @@ module.exports = {
       for (let i = 0; i < item.imageId.length; i++) {
         Image.findOne({ _id: item.imageId[i]._id })
           .then((image) => {
-            fs.unlink(path.join(`public/${image.imageUrl}`));
+            fs.unlink(path.join(`public/product/${image.imageUrl}`));
             image.remove();
           })
           .catch((error) => {
@@ -472,7 +472,7 @@ module.exports = {
         name,
         qty,
         itemId,
-        imageUrl: `images/${req.file.filename}`,
+        imageUrl: `images/feature/${req.file.filename}`,
       });
 
       const item = await Item.findOne({ _id: itemId });
@@ -500,10 +500,10 @@ module.exports = {
         req.flash("alertStatus", "success");
         res.redirect(`/admin/item/show-detail-item/${itemId}`);
       } else {
-        await fs.unlink(path.join(`public/${feature.imageUrl}`));
+        await fs.unlink(path.join(`public/feature/${feature.imageUrl}`));
         feature.name = name;
         feature.qty = qty;
-        feature.imageUrl = `images/${req.file.filename}`;
+        feature.imageUrl = `images/feature/${req.file.filename}`;
         await feature.save();
         req.flash("alertMessage", `Success Update Feature`);
         req.flash("alertStatus", "success");
@@ -529,7 +529,7 @@ module.exports = {
           await item.save();
         }
       }
-      await fs.unlink(path.join(`public/${feature.imageUrl}`));
+      await fs.unlink(path.join(`public/feature/${feature.imageUrl}`));
       await feature.remove();
       req.flash("alertMessage", "Success Delete Feature");
       req.flash("alertStatus", "success");
@@ -554,7 +554,7 @@ module.exports = {
         name,
         type,
         itemId,
-        imageUrl: `images/${req.file.filename}`,
+        imageUrl: `images/activity/${req.file.filename}`,
       });
 
       const item = await Item.findOne({ _id: itemId });
@@ -583,10 +583,10 @@ module.exports = {
         req.flash("alertStatus", "success");
         res.redirect(`/admin/item/show-detail-item/${itemId}`);
       } else {
-        await fs.unlink(path.join(`public/${activity.imageUrl}`));
+        await fs.unlink(path.join(`public/activity/${activity.imageUrl}`));
         activity.name = name;
         activity.type = type;
-        activity.imageUrl = `images/${req.file.filename}`;
+        activity.imageUrl = `images/activity/${req.file.filename}`;
         await activity.save();
         req.flash("alertMessage", `Success Update Activity`);
         req.flash("alertStatus", "success");
@@ -612,7 +612,7 @@ module.exports = {
           await item.save();
         }
       }
-      await fs.unlink(path.join(`public/${activity.imageUrl}`));
+      await fs.unlink(path.join(`public/activity/${activity.imageUrl}`));
       await activity.remove();
       req.flash("alertMessage", "Success Delete Activity");
       req.flash("alertStatus", "success");
