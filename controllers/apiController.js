@@ -46,7 +46,7 @@ module.exports = {
 
             const testimonial = {
                 _id : "asd1293uasdads1",
-                imageUrl: "images/testimonial2.jpg",
+                imageUrl: "images/review/testimonial2.jpg",
                 name: "Happy Family",
                 rate: 4.55,
                 content: "What a great trip with my family and I should try again next time soon ...",
@@ -82,7 +82,7 @@ module.exports = {
 
             const testimonial = {
                 _id : "asd1293uasdads1",
-                imageUrl: "images/testimonial1.jpg",
+                imageUrl: "images/review/testimonial1.jpg",
                 name: "Happy Family",
                 rate: 4.55,
                 content: "What a great trip with my family and I should try again next time soon ...",
